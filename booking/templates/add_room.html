@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="#" method="post" class="form">
+    {% csrf_token %}
+    <p>
+        <label>Nazwa:
+            <input name="name" value="" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Pojemność użyszkodników
+            <input name="capacity" type="number" />
+        </label>
+    </p>
+    <p>
+        <label>Czy ma projektor?
+            <input name="projector" type="checkbox" value="1" />
+        </label>
+    </p>
+    <p>
+        <input type="submit" value="Wyślij mnie"/>
+    </p>
+</form>
+
+{% endblock %}

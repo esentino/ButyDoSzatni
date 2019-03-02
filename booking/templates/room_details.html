@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<p>Strona sali konferencyjnej:</p>
+<p>Nazwa: {{ room.name }}</p>
+<p>Pojemność: {{ room.capacity }}</p>
+<p>Ma projektor?
+    {% if room.projector %}
+    <strong>TAK</strong>
+    {% else %}
+    <strong>OJ NIE</strong>
+    {% endif %}
+</p>
+
+<H2>Aktualne rezerwacje</H2>
+
+<ul>
+    {% for reservation in reservations %}
+    <li>{{ reservation.date }} ({{ reservation.comment }})</li>
+    {% endfor %}
+</ul>
+
+<form method="post" action="{% url 'add-reservation' room_id=room.id %}">
+    {% csrf_token %}
+    <p>
+        <label>Data:
+            <input type="date" name="date">
+        </label>
+    </p>
+    <p>
+        <label>Komentarz:
+            <input type="text" name="comment">
+        </label>
+    </p>
+    <input type="submit" value="Dodaj rezerwację">
+</form>
+{% endblock %}

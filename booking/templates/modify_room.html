@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form action="#" method="post" class="form">
+    {% csrf_token %}
+    <p>
+        <label>Nazwa:
+            <input name="name" value="{{ room.name }}" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Pojemność użyszkodników
+            <input name="capacity" type="number" value="{{ room.capacity }}"/>
+        </label>
+    </p>
+    <p>
+        <label>Czy ma projektor?
+            {% if room.projector %}
+            <input name="projector" type="checkbox" value="1" checked="checked" />
+            {% else %}
+            <input name="projector" type="checkbox" value="1" />
+            {% endif %}
+        </label>
+    </p>
+    <p>
+        <input type="submit" value="Wyślij mnie"/>
+    </p>
+</form>
+
+{% endblock %}

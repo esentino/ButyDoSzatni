@@ -1,0 +1,34 @@
+"""rezerwacje URL Configuration
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/2.1/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.contrib import admin
+from django.urls import path
+
+from booking.views import (strona_glowna, strona_test, add_room, modify_room,
+                           delete_room, room, add_reservation, search)
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', strona_glowna, name='main-page'),
+    path('test', strona_test),
+    path('room/new', add_room, name='add-room'),
+    path('room/modify/<int:id>',
+         modify_room, name='modify-room'),
+    path('room/delete/<int:id>',
+         delete_room, name='delete-room'),
+    path('room/<int:id>', room, name='room'),
+    path('reservation/<int:room_id>', add_reservation, name='add-reservation'),
+    path('search', search, name='search'),
+]

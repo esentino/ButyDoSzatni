@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+Strona główna
+<ul>
+    {% for room in rooms %}
+    <li>
+        {% if room.is_busy_today %}
+        <strong>ZAJĘ™Ą NAWET BARDZO</strong>
+        {% else %}
+        <strong>NAWET WOLNA BARDZO WOLNA</strong>
+        {% endif %}
+        <a href="{% url 'room' id=room.id %}">{{ room.name }}</a>
+        <a href="{% url 'modify-room' id=room.id %}">Modyfikuj</a>
+        <a href="{% url 'delete-room' id=room.id %}">Usuń</a>
+    </li>
+    {% endfor %}
+</ul>
+
+<form action="{% url 'search' %}" method="get" class="form">
+
+    <p>
+        <label>Nazwa:
+            <input name="name" value="" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Pojemność użyszkodników
+            <input name="capacity" type="number" />
+        </label>
+    </p>
+    <p>
+        <label>Czy ma projektor?
+            <input name="projector" type="checkbox" value="1" />
+        </label>
+    </p>
+    <p>
+        <label>Data
+            <input name="date" type="date" />
+        </label>
+    </p>
+    <p>
+        <input type="submit" value="Wyślij mnie"/>
+    </p>
+</form>
+{% endblock %}
